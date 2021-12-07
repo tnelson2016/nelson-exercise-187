@@ -1,0 +1,94 @@
+//AUTHOR:Troy Nelson
+//COURSE: CPT187
+//PURPOSE: Writes an order and saves the order for a user to go 
+//back and retrieve or review if needed. Allows users to save
+//and add more orders.
+//STARTDATE: 12/07/2021
+
+
+
+package edu.cpt187.Nelson.exercise6;
+
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+public class WriteOrder 
+{
+
+	//declare and initialize fileFoundFlag
+	private boolean fileFoundFlag = false;
+
+	//declare and initialize masterFileName
+	private String masterFileName = " ";
+
+	//declare and initialize recordCount
+	private int recordCount = 0;
+
+
+	//constructor//
+	//non-default constructor
+	public WriteOrder(String borrowedFileName)
+	{
+	}//END of Constructor
+
+
+
+	//setters//
+
+	//setWriteOrder
+	public void setWriteOrder(int borrowedItemID, String borrowedItemName, double borrowedItemPrice, int borrowedQuantity, double borrowedOrderCost)
+	{
+		//begin try block
+		try
+		{
+			PrintWriter filePW = new PrintWriter(new FileWriter(masterFileName,true)); 
+
+			filePW.printf("%n%d\t%s\t%f\t%d\t%f%n", borrowedItemID, borrowedItemName, borrowedItemPrice, borrowedQuantity, borrowedOrderCost);
+
+			fileFoundFlag = true;
+
+			recordCount++;
+
+			filePW.close();	
+
+		}//END of try block
+
+		//begin catch block
+		catch(IOException ex)
+		{
+			fileFoundFlag = false;
+		}//END catch block
+
+	}//END of set write order
+
+
+
+	//getters//
+
+	//this behavior will return the file found flag
+	public boolean getFileFoundFlag()
+	{
+		return fileFoundFlag;
+	}//END of fileFoundFlag
+
+
+	//this behavior will return the master file name
+	public String getFileName()
+	{
+		return masterFileName;
+	}//END of masterFileName
+
+
+	//this behavior will return the record count
+	public int getRecordCount()
+	{
+		return recordCount;
+	}//END of recordCount
+
+
+
+
+
+}//END of Write order
